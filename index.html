@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convite Especial 💘</title>
+  <style>
+    body {
+      background-color: #ffe6f2;
+      font-family: "Comic Sans MS", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      margin: 0;
+      position: relative;
+    }
+    h1 {
+      color: #ff4da6;
+      font-size: 2em;
+      text-align: center;
+      z-index: 2;
+      max-width: 90%;
+    }
+    .buttons {
+      margin-top: 30px;
+      z-index: 2;
+    }
+    button {
+      padding: 15px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+    #yesBtn {
+      background-color: #ff80bf;
+      color: white;
+    }
+    #yesBtn:hover {
+      background-color: #ff4da6;
+    }
+    #noBtn {
+      background-color: #cccccc;
+      position: absolute;
+    }
+    .heart {
+      position: absolute;
+      bottom: 0;
+      color: #ff4da6;
+      font-size: 24px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+
+    .cat-bg {
+      background-image: url('https://placekitten.com/800/600');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: white;
+      text-shadow: 2px 2px 5px #000;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vamos comigo no Country Beat e Guilherme & Benuto dia 16/10? 💃🎶</h1>
+  <div class="buttons">
+    <button id="yesBtn">Sim</button>
+    <button id="noBtn">Não</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4d4c439f7b.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    yesBtn.addEventListener('click', () => {
+      document.body.innerHTML = `
+        <div class="cat-bg">
+          <h1>Sabia que você ia dizer sim 😍💘</h1>
+          <p>Agora já pode se arrumar pro Country Beat comigo 😎🐱</p>
+        </div>
+      `;
+      const audio = document.querySelector('audio');
+      if (audio) audio.pause();
+    });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = 3 + Math.random() * 2 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 400);
+  </script>
+</body>
+</html>
